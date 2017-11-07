@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+if (file_exists(__DIR__ . '/../../../autoload.php')) {
+  require __DIR__ . '/../../../autoload.php';
+} else {
+  require __DIR__ . '/../vendor/autoload.php';
+}
+
+if ($argv[1] === 'init') {
+  $app = new Makepost\DeployFtp\Init();
+} else {
+  $app = new Makepost\DeployFtp\Push();
+}
+
+$app->baseUri = getenv('BASE_URI');
+$app->publicHtml = getenv('PUBLIC_HTML');
+$app->db = getenv('db');
+$app->storageDir = getcwd();
+$app->vendorDir = __DIR__ . '/../vendor';
+
+$app->run();
