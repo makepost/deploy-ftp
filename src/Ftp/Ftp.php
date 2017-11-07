@@ -1,6 +1,8 @@
 <?php
 
-namespace Makepost\DeployFtp;
+namespace Makepost\DeployFtp\Ftp;
+
+use Makepost\DeployFtp\Uri\Uri;
 
 /**
  * Puts/gets/deletes files using FTP without renaming.
@@ -19,9 +21,13 @@ class Ftp
         ftp_delete($this->conn, $path);
     }
 
-    public function get($localFile)
+    public function get($localFile, $remoteFile = null)
     {
-        ftp_get($this->conn, $localFile, basename($localFile), FTP_BINARY);
+        if (null === $remoteFile) {
+            $remoteFile = basename($localFile);
+        }
+
+        ftp_get($this->conn, $localFile, $remoteFile, FTP_BINARY);
     }
 
     public function put($localFile)

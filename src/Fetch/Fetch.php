@@ -1,6 +1,6 @@
 <?php
 
-namespace Makepost\DeployFtp;
+namespace Makepost\DeployFtp\Fetch;
 
 /**
  * Gets a page or posts a form over HTTP.

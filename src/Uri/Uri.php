@@ -1,6 +1,6 @@
 <?php
 
-namespace Makepost\DeployFtp;
+namespace Makepost\DeployFtp\Uri;
 
 /**
  * Gets parts of a link.

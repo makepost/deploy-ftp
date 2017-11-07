@@ -15,10 +15,12 @@ cd /path/to/your/git/repo
  export DB=mysql://user:pass@mysql.example.com/db
 
 # Gets a snapshot you can work on.
-deploy-ftp init
+deploy-ftp get
+deploy-ftp get-db
 
 # Unpacks your local files over remote.
-deploy-ftp
+deploy-ftp put
+deploy-ftp put-db
 ```
 
 ## License

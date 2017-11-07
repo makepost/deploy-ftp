@@ -7,16 +7,20 @@ if (file_exists(__DIR__ . '/../../../autoload.php')) {
   require __DIR__ . '/../vendor/autoload.php';
 }
 
-if ($argv[1] === 'init') {
-  $app = new Makepost\DeployFtp\Init();
-} else {
-  $app = new Makepost\DeployFtp\Push();
+if ($argv[1] === 'get-db') {
+  $app = new Makepost\DeployFtp\Db\DbGet();
+} elseif ($argv[1] === 'put-db') {
+  $app = new Makepost\DeployFtp\Db\DbPut();
+} elseif ($argv[1] === 'get') {
+  $app = new Makepost\DeployFtp\File\FileGet();
+} elseif ($argv[1] === 'put') {
+  $app = new Makepost\DeployFtp\File\FilePut();
 }
 
 $app->baseUri = getenv('BASE_URI');
 $app->publicHtml = getenv('PUBLIC_HTML');
-$app->db = getenv('db');
-$app->storageDir = getcwd();
-$app->vendorDir = __DIR__ . '/../vendor';
+$app->db = getenv('DB');
+$app->adminer = 'https://github.com/vrana/adminer/releases/download/v4.3.1/adminer-4.3.1-mysql-en.php';
+$app->unzipper = 'https://raw.githubusercontent.com/ndeet/unzipper/master/unzipper.php';
 
 $app->run();
